@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mujuezhike.daily.test.dao.map.RelatedBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.mujuezhike.daily.test.entity.RelatedBean" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="main_id" property="mainId" jdbcType="BIGINT" />
+    <id column="related_id" property="relatedId" jdbcType="BIGINT" />
+    <result column="main_name" property="mainName" jdbcType="VARCHAR" />
+    <result column="related_name" property="relatedName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a.id, a.main_id, a.related_id, a.main_name,a.related_name, a.create_time, a.update_time 
+  </sql>
+  
+  <insert id="insert" parameterType="com.mujuezhike.daily.test.entity.RelatedBean" useGeneratedKeys="true" keyProperty="id">
+    insert into related_bean (
+      id, 
+      main_id, 
+      related_id, 
+      main_name,
+      related_name
+      )
+    values (
+      #{id,jdbcType=BIGINT},
+      #{mainId,jdbcType=BIGINT},
+      #{relatedId,jdbcType=BIGINT}, 
+      #{mainName,jdbcType=VARCHAR},
+      #{relatedName,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.mujuezhike.daily.test.entity.RelatedBean" >
+    update related_bean
+    <set >
+      <if test="mainId != null" >
+        main_id = #{mainId,jdbcType=BIGINT},
+      </if>
+      <if test="relatedId != null" >
+        related_id = #{relatedId,jdbcType=BIGINT},
+      </if>
+      <if test="mainName != null" >
+        main_name = #{mainName,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedName != null" >
+        related_name = #{relatedName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectUnrelatedBean" resultMap="BaseResultMap" >
+  
+  	select 
+    <include refid="Base_Column_List" />
+    from related_bean a
+    where 
+    main_id IS NULL OR related_id IS NULL
+    limit 1,10
+    
+  </select>
+  
+  
+  
+</mapper>

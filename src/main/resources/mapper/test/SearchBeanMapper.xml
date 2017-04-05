@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mujuezhike.daily.test.dao.map.SearchBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.mujuezhike.daily.test.entity.SearchBean" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a.id, a.name, a.count, a.status, a.create_time, a.update_time 
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from search_bean a
+    where a.id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <!-- selectBySearchBean -->
+  <select id="selectBySearchBean" resultMap="BaseResultMap" parameterType="com.mujuezhike.daily.test.entity.SearchBean" >
+    select 
+    <include refid="Base_Column_List" />
+    from search_bean a
+    where 1=1
+      <if test="id != null" >
+        and a.id = #{id,jdbcType=BIGINT} 
+      </if>
+      <if test="count != null" >
+        and a.count = #{count,jdbcType=BIGINT} 
+      </if>
+      <if test="createTime != null" >
+        and a.create_time = #{createTime,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="updateTime != null" >
+        and a.update_time = #{updateTime,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="name != null" >
+        and a.name = #{name,jdbcType=VARCHAR} 
+      </if>
+      <if test="status != null" >
+        and a.status = #{status,jdbcType=TINYINT} 
+      </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from search_bean a
+    where a.id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.mujuezhike.daily.test.entity.SearchBean" useGeneratedKeys="true" keyProperty="id">
+    insert into search_bean (
+      id, 
+      name, 
+      count, 
+      status
+      )
+    values (
+      #{id,jdbcType=BIGINT},
+      #{name,jdbcType=VARCHAR},
+      #{count,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.mujuezhike.daily.test.entity.SearchBean" >
+    update search_bean
+    <set >
+      <if test="count != null" >
+        count = #{count,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.mujuezhike.daily.test.entity.SearchBean" >
+    update search_bean
+    set name = #{name,jdbcType=VARCHAR},
+        count = #{count,jdbcType=BIGINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>
