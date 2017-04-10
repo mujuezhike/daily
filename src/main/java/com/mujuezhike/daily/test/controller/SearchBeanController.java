@@ -1,5 +1,6 @@
 package com.mujuezhike.daily.test.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mujuezhike.daily.NormalCharTest;
+import com.mujuezhike.daily.daily.entity.DailyBeanHistoryStatistics;
+import com.mujuezhike.daily.daily.service.DailyService;
 import com.mujuezhike.daily.test.entity.ResultModel;
 import com.mujuezhike.daily.test.entity.SearchBean;
 import com.mujuezhike.daily.test.enums.ResultStatus;
@@ -25,11 +28,32 @@ public class SearchBeanController {
 	@Autowired
 	private WebSpiderService webSpiderService;
 	
+	@Autowired
+	private DailyService dailyService;
+	
 	@RequestMapping("in")
 	public ResponseEntity<ResultModel> in(SearchBean record){
 		if(record.getName()!=null){
 			searchBeanService.insert(record);
 			return new ResponseEntity<>(ResultModel.ok(record), HttpStatus.OK);
+		}
+        return new ResponseEntity<>(ResultModel.error(ResultStatus.UNKNOWN_ERROR), HttpStatus.BAD_REQUEST);        
+    }
+	
+	@RequestMapping("da")
+	public ResponseEntity<ResultModel> da(String path){
+		if(path!=null){
+			dailyService.arrangeDocuments(path);
+			return new ResponseEntity<>(ResultModel.ok("OK"), HttpStatus.OK);
+		}
+        return new ResponseEntity<>(ResultModel.error(ResultStatus.UNKNOWN_ERROR), HttpStatus.BAD_REQUEST);        
+    }
+	
+	@RequestMapping("ca")
+	public ResponseEntity<ResultModel> ca(String date){
+		if(date!=null){
+			List<DailyBeanHistoryStatistics> list = dailyService.getHistoryByDate(date);
+			return new ResponseEntity<>(ResultModel.ok(list), HttpStatus.OK);
 		}
         return new ResponseEntity<>(ResultModel.error(ResultStatus.UNKNOWN_ERROR), HttpStatus.BAD_REQUEST);        
     }

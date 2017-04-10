@@ -2,8 +2,10 @@ package com.mujuezhike.daily;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ public class DailyTest {
 	
 	public static void main(String[] args){
 		
-		traverseFolder2("E:\\dailyhome","炉石");
+		traverseFolder2("E:\\日记\\rj20170410","VIDEO");
 		
 		//showMap(typeMap);
 		
@@ -33,8 +35,8 @@ public class DailyTest {
 	}
 	
 	/**
-	 * �������е��ļ��� 
-	 * ��ͳ����map
+	 * file 
+	 * map
 	 * @param path
 	 */
 	public static void traverseFolder2(String path,String searchBean) {
@@ -43,7 +45,7 @@ public class DailyTest {
         if (file.exists()) {
             File[] files = file.listFiles();
             if (files.length == 0) {
-                //System.out.println("�ļ����ǿյ�!");
+                //System.out.println("file not find!");
                 return;
             } else {
                 for (File file2 : files) {
@@ -91,7 +93,7 @@ public class DailyTest {
                     		System.out.println("filename "+ file2.getAbsolutePath() +": title ");
                     	}
                     	
-//                        System.out.println("�ļ�:" + file2.getAbsolutePath());
+//                      System.out.println("file:" + file2.getAbsolutePath());
                         searchFileByLines(file2,searchBean);
                     }
                 }
@@ -102,7 +104,7 @@ public class DailyTest {
     }
 	
 	/**
-	 * ��ʾmap
+	 * show map infomation
 	 * @param map
 	 */
 	public static void showMap(Map<String,Long> map) {
@@ -137,7 +139,7 @@ public class DailyTest {
         BufferedReader reader = null;
         try {
             //System.out.println("����Ϊ��λ��ȡ�ļ����ݣ�һ�ζ�һ���У�");
-            reader = new BufferedReader(new FileReader(file));
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"GBK"));  
             String tempString = null;
             int line = 1;
             // һ�ζ���һ�У�ֱ������nullΪ�ļ�����
@@ -157,6 +159,7 @@ public class DailyTest {
                 try {
                     reader.close();
                 } catch (IOException e1) {
+                	e1.printStackTrace();
                 }
             }
         }

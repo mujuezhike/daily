@@ -21,8 +21,15 @@
 			
 			$(".gen").click(function(){
 				
-				$.post("/dailyAnalysis/ge"
-						,{name:"CBC"}
+				//$.post("/dailyAnalysis/ge"
+				//		,{name:"CBC"}
+				//		,function(data){
+				//			
+				//		}
+				//		);
+				
+				$.post("/dailyAnalysis/da"
+						,{path:"E:\\日记\\rj20170410"}
 						,function(data){
 							
 						}

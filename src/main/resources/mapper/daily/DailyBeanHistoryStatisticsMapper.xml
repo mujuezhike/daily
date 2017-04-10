@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mujuezhike.daily.daily.dao.map.DailyBeanHistoryStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.mujuezhike.daily.daily.entity.DailyBeanHistoryStatistics" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="count" property="count" jdbcType="BIGINT" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a.id, 
+    a.name, 
+    a.status, 
+    a.create_time, 
+    a.update_time,
+    a.count,
+    a.creator,
+    a.date,
+    a.title,
+    a.order
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from daily_bean_history_statistics a
+    where a.id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- selectBySearchBean -->
+  <select id="selectBySearchBean" resultMap="BaseResultMap" parameterType="com.mujuezhike.daily.daily.entity.DailyBeanHistoryStatistics" >
+    select 
+    <include refid="Base_Column_List" />
+    from daily_bean_history_statistics a
+    where 1=1
+      <if test="id != null" >
+        and a.id = #{id,jdbcType=VARCHAR} 
+      </if>
+      <if test="name != null" >
+        and a.name = #{name,jdbcType=VARCHAR} 
+      </if>
+      <if test="status != null" >
+        and a.status = #{status,jdbcType=TINYINT} 
+      </if>
+      <if test="createTime != null" >
+        and a.create_time = #{createTime,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="updateTime != null" >
+        and a.update_time = #{updateTime,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="count != null" >
+        and a.count = #{count,jdbcType=BIGINT} 
+      </if>
+      <if test="creator != null" >
+        and a.creator = #{creator,jdbcType=VARCHAR} 
+      </if>
+      <if test="date != null" >
+        and a.date = #{date,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="title != null" >
+        and a.title = #{title,jdbcType=VARCHAR} 
+      </if>
+      <if test="order != null" >
+        and a.order = #{order,jdbcType=DOUBLE} 
+      </if>
+  </select>
+  
+  <insert id="insert" parameterType="com.mujuezhike.daily.daily.entity.DailyBeanHistoryStatistics" >
+    insert into daily_bean_history_statistics (
+      id, 
+      `name`, 
+      `status`,
+      count,
+      creator,
+      date,
+      title,
+      `order`
+      )
+    values (
+      #{id,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{status,jdbcType=TINYINT},
+      #{count,jdbcType=VARCHAR},
+      #{creator,jdbcType=VARCHAR},
+      #{date,jdbcType=TIMESTAMP},
+      #{title,jdbcType=VARCHAR},
+      #{order,jdbcType=DOUBLE}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.mujuezhike.daily.daily.entity.DailyBeanHistoryStatistics" >
+    update daily_bean_history_statistics
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="content != null" >
+        count = #{count,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.mujuezhike.daily.daily.entity.DailyBeanHistoryStatistics" >
+    update daily_bean_history_statistics
+    set name = #{name,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        status = #{status,jdbcType=TINYINT},
+        count = #{count,jdbcType=BIGINT},
+        creator = #{creator,jdbcType=VARCHAR},
+        title = #{title,jdbcType=VARCHAR},
+        date = #{date,jdbcType=TIMESTAMP},
+        order = #{order,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectLastTitle" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from daily_bean_history_statistics a
+    where a.title = #{title,jdbcType=VARCHAR}
+    ORDER BY a.date DESC
+    limit 1
+  </select>
+  
+  
+</mapper>
