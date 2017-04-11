@@ -15,7 +15,6 @@
 			.chartbean .ln {background-color: #BBBBBB;margin-right:20px;height:30px;display:inline-block;line-height:30px;float: left;}
 			.chartbean .ii {background-color: #EEEEEE;margin-right:20px;height:30px;display:inline-block;line-height:30px;float: left;}
 		</style>
-		
 	</head> 
 	<body>
 		<div class="date">2014-02-15</div>
@@ -41,17 +40,17 @@
 			    return fmt;
 			}
 			
-			var dd = new Date("2015",1,15);
+			var dd = new Date("2014",1,15);
 			var f = false;
 			
 			var generate = function(){
 				
-				if(f){return};
+				//if(f){return};
 				
 				f = true;
 				
 				   dd = dd.valueOf();
-				   dd = dd + 1 * 24 * 60 * 60 * 1000;
+				   dd = dd + 20 * 24 * 60 * 60 * 1000;
 				   dd = new Date(dd);
 				
 				$.ajax({ 
