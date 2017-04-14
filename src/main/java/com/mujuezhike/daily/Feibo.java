@@ -8,15 +8,15 @@ public class Feibo {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(fibonacci(BigInteger.valueOf(48)));
-		System.out.println(fibonacciZ(BigInteger.valueOf(48)));
+		System.out.println(fibonacci(BigInteger.valueOf(36)));
+		System.out.println(fibonacciZ(BigInteger.valueOf(36)));
 	
 	}
 	
-	private static BigInteger u = null;
+	//private static BigInteger u = null;
 	 // 递归实现方式  
     public static BigInteger fibonacci(BigInteger n){  
-    	
+    	BigInteger u = null;
         if(n.compareTo(BigInteger.valueOf(2))<=0){  
             return BigInteger.valueOf(1);  
         }else{  
