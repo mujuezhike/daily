@@ -61,35 +61,250 @@ public class SearchBeanController {
 	@RequestMapping("ge")
 	public ResponseEntity<ResultModel>ge(SearchBean record){
 		if(record.getName()!=null){
-			webSpiderService.generateSearchBean(record.getName());
-			
+			//webSpiderService.generateSearchBean(record.getName());
+			int i=0;
 			while(true){
 				
-				int l = NormalCharTest.str.length();
+//				int l = NormalCharTest.str.length();
+//				
+//				System.out.println(l);
+//				
+//				Random rd = new Random();
+//				
+//				String a = "";
+//				
+//				for(int i=0;i<3;i++){
+//					
+//					int u = rd.nextInt();
+//					
+//					int n = Math.abs(u%l);
+//					
+//					System.out.println(n);
+//					
+//					System.out.println(NormalCharTest.str.charAt(n));
+//					
+//					a += NormalCharTest.str.charAt(n);
+//					
+//				}
 				
-				System.out.println(l);
+				String[] searchbean = {
+						   "ActiveMQ"
+						  ,"alibaba"
+			              ,"amaze"
+					      ,"amaze ui"
+					      
+						  ,"android"
+						  ,"android studo"
+						  ,"anglur"
+						  ,"anglur.js"
+						  
+						  ,"annotate"
+						  ,"AI"
+						  ,"alexa"
+						  ,"Ajax"
+						  ,"AOP"
+						  ,"Apache"
+						  ,"app"
+						  ,"Autowired"
+					      ,"Axure"
+					      ,"bootstrap"
+						  ,"Cassandra"
+						  ,"ccleaner"
+			              ,"checkbox"
+			              ,"chrome"
+			              ,"Cipher"
+			              ,"Cmd"
+			              ,"Cmder"
+			              ,"cms"
+			              ,"cmstop"
+			              ,"cocos2dx"
+			              
+			              ,"cShare"
+						  ,"css"
+						  ,"css3"
+						  ,"css hack"
+						  ,"CoreNLP"
+						  ,"cubeweb"
+						  ,"curared"
+						  ,"c++"
+						  ,"dataTables"
+						  ,"DI"
+						  
+						  ,"dingdone"
+						  ,"div"
+						  ,"docker"
+						  ,"DOM"
+						  ,"DreamWeaver"
+						  ,"dropdown"
+						  ,"druid"
+						  ,"easyrules"
+						  ,"EasyUI"
+						  ,"eclipse"
+						  ,"ecsd"
+						  ,"emulator"
+						  ,"epub"
+						  ,"ETL"
+						  ,"ERP"
+						  ,"excel"
+						  ,"extract"
+						  ,"ffmpeg"
+						  ,"Flux"
+						  ,"fontawesome"
+						  ,"gem"
+						  ,"Git"
+						  ,"GitBash"
+						  ,"gitblit"
+						  ,"github"
+						  
+						  ,"gradle"
+						  ,"grails"
+						  ,"Grizzly"
+						  ,"gulp"
+						  ,"HAXM"
+						  ,"Hbuilder"
+						  ,"Hdata"
+						  ,"hibernate"
+						  ,"homebrew"
+						  ,"hover"
+						  ,"hplus"
+						  ,"html"
+						  ,"HTML5"
+						  ,"hui"
+						  ,"h+"
+						  ,"iconfont"
+						  ,"idea"
+						  ,"iframe"
+						  ,"icheck"
+						  
+						  ,"innodb"
+						  ,"IOC"
+						  ,"Ionic"
+						  ,"iscroll"
+						  ,"java"
+						  ,"javaee"
+						  ,"javascript"
+						  ,"javase"
+						  ,"javassist"
+						  
+						  ,"javame"
+						  ,"JDBC"
+						  ,"jdi"
+						  ,"jetbrain"
+						  ,"jquery"
+						  ,"js"
+						  ,"json"
+						  ,"JSP"
+						  ,"JSX"
+						  ,"junit"
+						  ,"Kafka"
+						  ,"kaggle"
+						  ,"kendo"
+						  ,"Kettle"
+						  ,"LBS"
+						  ,"LESS"
+						  ,"linux"
+						  ,"lisense"
+						  ,"lodash"
+						  ,"mac"
+						  ,"mauna"
+						  ,"maven"
+						  ,"memcache"
+						  ,"Mina"
+						  ,"mikecrm"
+						  ,"mongodb"
+						  ,"mybatis"
+						  ,"mybatis generator"
+						  ,"myeclipse"
+						  ,"mysql"
+						  ,"navicat"
+						  ,"Navicat Premium"
+						  ,"Netty"
+						  ,"nginx"
+						  ,"NIO"
+						  ,"Office"
+						  ,"OLEDC ETL"
+						  ,"omniGraffle"
+						  ,"OpenCV"
+						  ,"opentab"
+						  ,"Oracle"
+						  ,"periscope"
+						   
+						  ,"perl"
+						  ,"photoshop"
+						  ,"phoneGap"
+						  ,"php"
+						  ,"phpstorm"
+						  ,"projecteuler"
+						  ,"pycharm"
+						  ,"python"
+						  ,"quartz"
+						  ,"RabbitMQ"
+						  ,"React"
+						  ,"redis"
+						  ,"Redux"
+						  ,"RSA"
+						  ,"Ruby"
+						  ,"SASS"
+						  ,"SCSS"
+						  ,"ScyllaDB"
+						  ,"Servlet"
+						  ,"shadowsocks"
+						  ,"shadowsocksX"
+						  ,"shiro"
+						  ,"SLF4J"
+						  ,"SourceTree"
+						  ,"spring"
+						  ,"SpringMVC"
+						  ,"sql"
+						  ,"sqlserver"
+						  ,"sql server"
+						  ,"ssh"
+						  ,"ssm"
+						  ,"stack overflow"
+						  ,"STARUML"
+						  
+						  ,"strtotime"
+						  ,"struts"
+						  ,"Struts2"
+						  ,"sts"
+						  ,"sublime"
+						  ,"SuperSlide"
+						  ,"Svn"
+						  ,"swiper"
+						  ,"theano"
+						  ,"tk"
+						  ,"tk.mybatis"
+						  ,"tomcat"
+						  ,"tooltip"
+						  ,"TrelloCSS"
+						  ,"TtlTransformer"
+						  ,"twitch"
+						  ,"Ubuntu"
+						  ,"unity"
+						  ,"validate"
+						  ,"velocity"
+						  ,"verilog"
+						  ,"viewerjs"
+						  ,"VPS"
+						  ,"wap"
+						  ,"webbench"
+						  ,"webpack"
+						  ,"WebStorm"
+						  ,"wiki"
+						  ,"yum"
+						  ,"zend"
+						  ,"Zepto"
+						  ,"ZeroMQ"
+						  ,"Ztree"
+						  };
 				
-				Random rd = new Random();
+				System.out.println(searchbean[i]);
 				
-				String a = "";
-				
-				for(int i=0;i<3;i++){
-					
-					int u = rd.nextInt();
-					
-					int n = Math.abs(u%l);
-					
-					System.out.println(n);
-					
-					System.out.println(NormalCharTest.str.charAt(n));
-					
-					a += NormalCharTest.str.charAt(n);
-					
+				webSpiderService.generateSearchBean(searchbean[i]);
+				i++;
+				if(i>=searchbean.length){
+					break;
 				}
-				
-				System.out.println(a);
-				
-				webSpiderService.generateSearchBean(a);
 				
 			}
 			

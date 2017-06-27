@@ -181,7 +181,9 @@ public class WebSpiderServiceImpl  implements WebSpiderService{
 						
 						List<SearchBean> list = searchBeanDao.selectBySearchBean(ssb);
 						
-						if(u.length()<=10 && (list==null||list.size()==0)){
+						//u.getBytes().length == u.length() 判断没有中文
+						if(u.length()<=10 && (list==null||list.size()==0)
+								&& u.getBytes().length == u.length()){
 							
 							m = u;
 							break;
@@ -199,7 +201,9 @@ public class WebSpiderServiceImpl  implements WebSpiderService{
 							
 								List<SearchBean> list = searchBeanDao.selectBySearchBean(ssb);
 							
-								if(u.length()<=10 && (list==null||list.size()==0)){
+								//u.getBytes().length == u.length() 判断没有中文
+								if(u.length()<=10 && (list==null||list.size()==0)
+										&& u.getBytes().length == u.length()){
 								
 									m = u;
 									break;
