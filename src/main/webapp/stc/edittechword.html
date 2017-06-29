@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>TechWord</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<style type="text/css">
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li,
+	pre, figure, form, fieldset, legend, button, input, textarea, select th,
+	td {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: #333;
+	background-color: #FFF;
+	line-height: 1.5;
+	background-color: #f5f5f5 !important;
+}
+
+.content {
+	margin: 30px auto;
+	background: #fff;
+	width: 1137px;
+	border: 1px solid #e5e5e5;
+	height: 600px;
+	position: relative;
+}
+
+.title {
+	height: 80px;
+}
+
+.techword-name {
+	margin: 30px 15px 0 30px;
+	font-size: 34px;
+	line-height: 1.15;
+	font-weight: 400;
+	vertical-align: sub;
+	position: relative;
+	float: left;
+	height: 42px;
+}
+
+.techword-subname {
+	margin: 44px 0 0 0;
+	font-size: 18px;
+	line-height: 1.15;
+	font-weight: 400;
+	vertical-align: sub;
+	position: relative;
+	float: left;
+	color: #a2a2a2;
+}
+
+.techword-describe {
+	font-size: 14px;
+	word-wrap: break-word;
+	color: #333;
+	margin-bottom: 15px;
+	/** text-indent: 2em; **/
+	line-height: 24px;
+	zoom: 1;
+	margin-left: 32px;
+	margin-right: 32px;
+}
+
+.tege-left {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	float: left;
+	left: -40px;
+	top: 30px;
+}
+.tege-right {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	float: right;
+	right: -40px;
+	top: 30px;
+}
+.tag-area {
+	display:none;
+    margin: 0px 30px 0px 30px;
+    width: auto;
+    min-height: 40px;
+    border: 1px solid #EEEEEE;
+    background-color: #FEFDFD;
+    padding-left: 10px;
+    /**padding-right: 10px;**/
+    padding-top: 10px;
+}
+.tag {
+	float: left;
+    border: 1px solid #DDDDDD;
+    margin: 0 10px 10px 0;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #999999;
+    cursor: pointer;
+}
+.tag:hover {
+	color: #333333;
+	border: 1px solid #666666;
+	backgroud-color: #FFFFFF;
+}
+.tag-title {
+	display:none;
+	margin: 0px 30px 0px 45px;
+    width: auto;
+    color: #cccccc;
+}
+
+.related-area {
+	display:none;
+    margin: 0px 30px 0px 30px;
+    width: auto;
+    min-height: 40px;
+    border: 1px solid #EEEEEE;
+    background-color: #FEFDFD;
+    padding-left: 10px;
+    /**padding-right: 10px;**/
+    padding-top: 10px;
+}
+.related {
+	float: left;
+    border: 1px solid #DDDDDD;
+    margin: 0 10px 10px 0;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #999999;
+    cursor: pointer;
+}
+.related:hover {
+	color: #333333;
+	border: 1px solid #666666;
+	backgroud-color: #FFFFFF;
+}
+.related-title {
+	display:none;
+	margin: 0px 30px 0px 45px;
+    width: auto;
+    color: #cccccc;
+}
+/** Edit **/
+::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #EEEEEE; 
+} 
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: #EEEEEE; 
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color: #EEEEEE; 
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: #EEEEEE; 
+} 
+.techword-name-input{
+	font-size: 34px;
+    line-height: 42px;
+    font-weight: 400;
+    vertical-align: sub;
+    position: relative;
+    float: left;
+    border: 1px solid #FFFFFF;
+    font-family: body;
+    color: #333;
+    outline:none;
+    height: 42px;
+    width: 234px; /** js 会控制变动**/
+}
+</style>
+</head>
+<body>
+	<div class="content">
+		<div class="tege tege-left">
+			<canvas id="tege-left-anvas"></canvas>
+		</div>
+		<div class="tege tege-right">
+			<canvas id="tege-right-anvas"></canvas>
+		</div>
+		<div class="title">
+			<div class="techword-name"></div>
+			<div class="techword-subname"></div>
+		</div>
+		<div class="techword-describe"></div>
+		<div class="tag-title">TAG</div>
+		<div class="tag-area">
+			
+		</div>
+		
+		<div class="related-title">RELATED</div>
+		<div class="related-area">
+			
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+		
+			function getQueryString(name) { 
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+				var r = window.location.search.substr(1).match(reg); 
+				if (r != null) return unescape(r[2]); return null; 
+			} 
+			
+			function checkUrl(str) {
+			    var RegUrl = new RegExp();
+			    RegUrl.compile("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$");
+			    if (!RegUrl.test(str)) {
+			        return false;
+			    }
+			    return true;
+			}
+		
+			var d = getQueryString("id");
+			
+			function initTegeLeftAnvas(){
+				var canvas=document.getElementById('tege-left-anvas');
+				canvas.width = 30;
+				canvas.height = 30;
+				var ctx=canvas.getContext('2d');
+				var draw = function(x1, y1, x2, y2, x3, y3,x4,y4, color, type) {
+				    ctx.beginPath();
+				    ctx.moveTo(x1, y1);
+				    ctx.lineTo(x2, y2);
+				    ctx.lineTo(x3, y3);
+				    ctx.lineTo(x4, y4);
+				    ctx[type + 'Style'] = color;
+				    ctx.closePath();
+				    ctx[type]();
+				}
+				
+				draw(30,30,0,15,30,0,20,15,'#FEFDFD','fill');
+				draw(30,30,0,15,30,0,20,15,'#EEEEEE','stroke');
+				
+				canvas.onmouseover = function(e){  
+					 ctx.clearRect(0,0,canvas.width,canvas.height);
+					 var draw = function(x1, y1, x2, y2, x3, y3,x4,y4, color, type) {
+						    ctx.beginPath();
+						    ctx.moveTo(x1, y1);
+						    ctx.lineTo(x2, y2);
+						    ctx.lineTo(x3, y3);
+						    ctx.lineTo(x4, y4);
+						    ctx[type + 'Style'] = color;
+						    ctx.closePath();
+						    ctx[type]();
+					}
+					draw(30,30,0,15,30,0,20,15,'#FFFFFF','fill');
+					draw(30,30,0,15,30,0,20,15,'#666666','stroke');
+					$(canvas).css("cursor","pointer");
+				
+			    }
+				
+				canvas.onmouseout = function(e){  
+					ctx.clearRect(0,0,canvas.width,canvas.height); 
+					var draw = function(x1, y1, x2, y2, x3, y3,x4,y4, color, type) {
+					    ctx.beginPath();
+					    ctx.moveTo(x1, y1);
+					    ctx.lineTo(x2, y2);
+					    ctx.lineTo(x3, y3);
+					    ctx.lineTo(x4, y4);
+					    ctx[type + 'Style'] = color;
+					    ctx.closePath();
+					    ctx[type]();
+					}
+					draw(30,30,0,15,30,0,20,15,'#FEFDFD','fill');
+					draw(30,30,0,15,30,0,20,15,'#EEEEEE','stroke');
+					$(canvas).css("cursor","default");
+			    }	
+			}
+			
+			function initTegeRightAnvas(){
+				var canvas=document.getElementById('tege-right-anvas');
+				canvas.width = 30;
+				canvas.height = 30;
+				var ctx=canvas.getContext('2d');
+				var draw = function(x1, y1, x2, y2, x3, y3,x4,y4, color, type) {
+				    ctx.beginPath();
+				    ctx.moveTo(x1, y1);
+				    ctx.lineTo(x2, y2);
+				    ctx.lineTo(x3, y3);
+				    ctx.lineTo(x4, y4);
+				    ctx[type + 'Style'] = color;
+				    ctx.closePath();
+				    ctx[type]();
+				}
+				
+				draw(0,0,30,15,0,30,5,15,'#FEFDFD','fill');
+				draw(0,0,30,15,0,30,5,15,'#EEEEEE','stroke');
+				
+				canvas.onmouseover = function(e){  
+					 ctx.clearRect(0,0,canvas.width,canvas.height);
+					 var draw = function(x1, y1, x2, y2, x3, y3,x4,y4, color, type) {
+						    ctx.beginPath();
+						    ctx.moveTo(x1, y1);
+						    ctx.lineTo(x2, y2);
+						    ctx.lineTo(x3, y3);
+						    ctx.lineTo(x4, y4);
+						    ctx[type + 'Style'] = color;
+						    ctx.closePath();
+						    ctx[type]();
+					}
+					draw(0,0,30,15,0,30,5,15,'#FFFFFF','fill');
+					draw(0,0,30,15,0,30,5,15,'#666666','stroke');
+					$(canvas).css("cursor","pointer");
+				
+			    }
+				
+				canvas.onmouseout = function(e){  
+					ctx.clearRect(0,0,canvas.width,canvas.height); 
+					var draw = function(x1, y1, x2, y2, x3, y3,x4,y4, color, type) {
+					    ctx.beginPath();
+					    ctx.moveTo(x1, y1);
+					    ctx.lineTo(x2, y2);
+					    ctx.lineTo(x3, y3);
+					    ctx.lineTo(x4, y4);
+					    ctx[type + 'Style'] = color;
+					    ctx.closePath();
+					    ctx[type]();
+					}
+					draw(0,0,30,15,0,30,5,15,'#FEFDFD','fill');
+					draw(0,0,30,15,0,30,5,15,'#EEEEEE','stroke');
+					$(canvas).css("cursor","default");
+			    }	
+			}
+			
+			initTegeLeftAnvas();
+			initTegeRightAnvas();
+			
+			$(".tege-left").click(function(){
+				if(d>1){
+					d = parseInt(d)-1;
+				}
+				window.location.href='./techword.html?id='+d;
+			});
+			
+			$(".tege-right").click(function(){
+				
+				d = parseInt(d)+1;
+				
+				window.location.href='./techword.html?id='+d;
+			});
+			
+			//edit 暂时不能左右移动
+			/**$(document).keydown(function(e){
+				
+		        switch(e.keyCode)  
+		        {
+		        	case 37:$(".tege-left").click();
+		        	        break;
+		        	case 39:$(".tege-right").click();
+        	        		break;        
+		        }
+			});**/
+			
+			$.post("/daily/techword/detail"
+						,{id:d||0}
+						,function(data){
+							console.info(data);
+							if(data.content){
+								$(".techword-name").html(data.content.name);
+								$(".techword-subname").html(data.content.subname);
+								$(".techword-describe").html(data.content.describe);
+							}
+						}
+						,"json");
+			
+			$.post("/daily/techword/tag"
+					,{id:d||0}
+					,function(data){
+						console.info(data);
+						if(data.content){
+							$(".tag-area").html(""); 
+							var content = data.content;
+							if(content.length>0){
+								
+								for(var i=0;i<content.length;i++){
+									var tag = $("<div class=\"tag\"></div>");
+									$(tag).html(content[i].tagWordBean.name);
+									
+									$(tag).attr("tagword",content[i].tagWordBean.id);
+									if(content[i].describe){
+										$(tag).attr("title",content[i].describe);	
+									}
+									if(content[i].relatedBean){
+										$(tag).attr("related",content[i].relatedWordBean);	
+									}
+									if(content[i].name){
+										$(tag).attr("wordname",content[i].name);	
+									}
+									
+									$(tag).click(function(){
+										var related = $(this).attr("related");
+										if(related){
+											window.location.href='./techword.html?id='+related;
+											return;
+										}
+										
+										var wordname = $(this).attr("wordname");
+										if(wordname && checkUrl(wordname)){
+											window.open(wordname);
+											return;
+										}
+										
+										var tagword = $(this).attr("tagword");
+										if(tagword){
+											window.location.href='./techword.html?id='+tagword;
+											return;
+										}
+										
+									})
+									
+									$(".tag-area").append(tag);
+									
+								}
+								
+								$(".tag-title").show();
+								$(".tag-area").css("display","inline-block");
+								
+								
+							}
+						}
+					}
+					,"json");
+			
+			$.post("/daily/techword/related"
+					,{id:d||0}
+					,function(data){
+						console.info(data);
+						if(data.content){
+							$(".related-area").html(""); 
+							var content = data.content;
+							if(content.length>0){
+								
+								for(var i=0;i<content.length;i++){
+									var related = $("<div class=\"related\"></div>");
+									$(related).html(content[i].targetWordBean.name);
+									
+									$(related).attr("targetWord",content[i].targetWordBean.id);
+									if(content[i].describe){
+										$(related).attr("title",content[i].describe);	
+									}
+									if(content[i].relatedBean){
+										$(related).attr("related",content[i].relatedWordBean);	
+									}
+									if(content[i].name){
+										$(related).attr("wordname",content[i].name);	
+									}
+									
+									$(related).click(function(){
+										var related = $(this).attr("related");
+										if(related){
+											window.location.href='./techword.html?id='+related;
+											return;
+										}
+										
+										var wordname = $(this).attr("wordname");
+										if(wordname && checkUrl(wordname)){
+											window.open(wordname);
+											return;
+										}
+										
+										var targetWord = $(this).attr("targetword");
+										if(targetWord){
+											window.location.href='./techword.html?id='+targetWord;
+											return;
+										}
+										
+									})
+									
+									$(".related-area").append(related);
+									
+								}
+								
+								$(".related-title").show();
+								$(".related-area").css("display","inline-block");
+								
+								
+							}
+						}
+					}
+					,"json");
+			
+			
+			/** Edit **/
+			function initaddname(){
+				var tname = $(".techword-name").html();
+				if(!tname){
+					var input = $("<input class=\"techword-name-input\" placeholder=\"请输入一个词语\" />");
+					$(".techword-name").append(input);
+					$(input).blur(function(){
+						  //$("input").css("background-color","#D6D6FF");
+						  initaddsubname();
+					});
+				}
+			}
+			function initaddsubname(){
+				var tsubname = $(".techword-subname").html();
+				if(!tsubname){
+					var input = $("<input class=\"techword-subname-input\" placeholder=\"请输入一个词语\" />");
+					$(".techword-subname").append(input);
+					$(input).blur(function(){
+						  //$("input").css("background-color","#D6D6FF");
+					});
+				}
+			}
+			initaddname();
+			
+	</script>
+</body>
+</html>

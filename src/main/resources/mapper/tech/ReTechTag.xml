@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mujuezhike.daily.techword.dao.map.ReTechTagMapper" >
+  <resultMap id="BaseResultMap" type="com.mujuezhike.daily.techword.entity.ReTechTag" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" /> 
+    <result column="target_word" property="targetWord" jdbcType="BIGINT" />
+    <result column="tag_word" property="tagWord" jdbcType="BIGINT" />
+    <result column="related_word" property="relatedWord" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a.id,
+	a.`name`,
+	a.`describe`,
+	a.`status`,
+	a.create_time,
+	a.update_time,
+	a.target_word,
+	a.tag_word,
+	a.related_word
+  </sql>
+  
+  <!-- selectBySearchBean -->
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.mujuezhike.daily.techword.entity.ReTechTag" >
+    select 
+    <include refid="Base_Column_List" />
+    from re_tech_tag a
+    where 1=1
+      <if test="id != null" >
+        and a.id = #{id,jdbcType=BIGINT} 
+      </if>
+      <if test="name != null" >
+        and a.name = #{name,jdbcType=VARCHAR} 
+      </if>
+      <if test="status != null" >
+        and a.status = #{status,jdbcType=TINYINT} 
+      </if>
+      <if test="createTime != null" >
+        and a.create_time = #{createTime,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="updateTime != null" >
+        and a.update_time = #{updateTime,jdbcType=TIMESTAMP} 
+      </if>
+      <if test="targetWord != null" >
+        and a.target_word = #{targetWord,jdbcType=BIGINT} 
+      </if>
+      <if test="tagWord != null" >
+        and a.tag_word = #{tagWord,jdbcType=BIGINT} 
+      </if>
+      <if test="relatedWord != null" >
+        and a.related_word = #{relatedWord,jdbcType=BIGINT} 
+      </if>
+  </select>
+  
+</mapper>

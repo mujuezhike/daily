@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mujuezhike.daily.techword.dao.map.ETechWordMapper" >
+  <resultMap id="BaseResultMap" type="com.mujuezhike.daily.techword.entity.ETechWord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="subname" property="subname" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" /> 
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="count_in_resume" property="countInResume" jdbcType="BIGINT" />
+    <result column="count_in_baidu" property="countInBaidu" jdbcType="BIGINT" />
+    <result column="is_main" property="isMain" jdbcType="TINYINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a.id,
+	a.`name`,
+	a.subname,
+	a.`describe`,
+	a.weight,
+	a.`status`,
+	a.create_time,
+	a.update_time,
+	a.count_in_resume,
+	a.count_in_baidu,
+	a.is_main
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from e_tech_word a
+    where a.id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

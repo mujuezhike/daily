@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Welcome</title>
-		<script type="text/javascript" src="stc/jquery.min.js"></script>
+		<script type="text/javascript" src="stc/js/jquery.min.js"></script>
 		
 	</head> 
 	<body>
