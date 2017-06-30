@@ -476,7 +476,7 @@ body {
 					,"json");
 	</script>
 	<script>
-var canvas,
+	var canvas,
 	ctx,
 	width,
 	height,
@@ -496,6 +496,7 @@ function line() {
 		x: width / 2,
 		y: height / 2
 	};
+	
 	this.dist = 0;
 	this.angle = 0;
 	this.hue = tick / 5;
@@ -583,8 +584,14 @@ function randInt(min, max) {
 
 function init() {
 	canvas = document.getElementById('canvas');
+
+	//$(".content").mouseover(function(e){
+	//	hheight = e.clientY;
+	//	hwidth = e.clientX;
+	//});
+	
 	ctx = canvas.getContext('2d');
-	size = 30;
+	size = 50;
 	lines = [];
 	reset();
 	loop();
@@ -602,6 +609,10 @@ function reset() {
 
 function create() {
 	if (tick % 10 === 0) {
+		lines.push(new line());
+		lines.push(new line());
+		lines.push(new line());
+		lines.push(new line());
 		lines.push(new line());
 	}
 }
