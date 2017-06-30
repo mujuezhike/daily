@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Welcome</title>
+<script type="text/javascript" src="stc/js/jquery.min.js"></script>
+<style type="text/css">
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li,
+	pre, figure, form, fieldset, legend, button, input, textarea, select th,
+	td {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: #333;
+	background-color: #FFF;
+	line-height: 1.5;
+	background-color: #f5f5f5 !important;
+	background-image: url(stc/img/back.png); 
+}
+
+.content {
+	margin: 0px auto;
+	background: transparent;
+	/** width: 1137px; **/
+	height: auto;
+	position: relative;
+}
+
+.title {
+	height: 80px;
+	font-size: 64px;
+	font-weight: 1400;
+	line-height: 1.15;
+}
+
+</style>
+</head>
+<body>
+	<div class="content">
+		
+		<!-- <div class="title">Tech Word</div> -->
+		<canvas id="text" width="500" height="100" style="display:none;"></canvas>
+		<canvas id="stage" width="1137" height="650" style="margin:0 auto;">Tech Word</canvas>
+		<form id="form" style="display:none;">
+    		<input type="text" id="inputText" value="Tech Word" />
+    		<input type="submit" class="iinit" value="TRY IT" />
+		</form>
+		
+	</div>
+  	<script src='stc/js/EasePack.min.js'></script>
+  	<script src='stc/js/TweenLite.min.js'></script>
+  	<script src='stc/js/easeljs-0.7.1.min.js'></script>
+  	<script src='stc/js/requestAnimationFrame.js'></script>
+  	<script src="stc/js/index.js"></script>
+</body>
+</html>

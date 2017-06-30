@@ -61,7 +61,7 @@
     </mvc:annotation-driven>
     
     <!-- 静态资源映射 -->
-    <mvc:resources mapping="/stc/**" location="/stc/" />
+    <mvc:resources mapping="/**" location="/" />
     
     <!-- 全局异常处理器  -->
 	<!-- <bean class="com.swan.swanmall.common.exception.GlobalExceptionResolver" /> -->

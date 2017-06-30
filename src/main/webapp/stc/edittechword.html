@@ -19,6 +19,7 @@ body {
 	background-color: #FFF;
 	line-height: 1.5;
 	background-color: #f5f5f5 !important;
+	background-image: url(img/back.png); 
 }
 
 .content {
@@ -254,7 +255,8 @@ color: #EEEEEE;
 	</div>
 
 	<script type="text/javascript">
-		
+	
+			var baseurl = "";
 		
 			function getQueryString(name) { 
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
@@ -424,7 +426,7 @@ color: #EEEEEE;
 		        }
 			});**/
 			
-			$.post("/daily/techword/detail"
+			$.post(baseurl+"techword/detail"
 						,{id:d||0}
 						,function(data){
 							console.info(data);
@@ -436,7 +438,7 @@ color: #EEEEEE;
 						}
 						,"json");
 			
-			$.post("/daily/techword/tag"
+			$.post(baseurl+"techword/tag"
 					,{id:d||0}
 					,function(data){
 						console.info(data);
@@ -494,7 +496,7 @@ color: #EEEEEE;
 					}
 					,"json");
 			
-			$.post("/daily/techword/related"
+			$.post(baseurl+"techword/related"
 					,{id:d||0}
 					,function(data){
 						console.info(data);
