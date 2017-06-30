@@ -21,6 +21,7 @@ body {
 	background-color: #f5f5f5 !important;
 	background-image: url(img/back.png); 
 	background-repeat: round;
+	background-size: cover;
 }
 
 .content {
@@ -427,7 +428,7 @@ color: #EEEEEE;
 		        }
 			});**/
 			
-			$.post(baseurl+"techword/detail"
+			$.post(baseurl+"../techword/detail"
 						,{id:d||0}
 						,function(data){
 							console.info(data);
@@ -439,7 +440,7 @@ color: #EEEEEE;
 						}
 						,"json");
 			
-			$.post(baseurl+"techword/tag"
+			$.post(baseurl+"../techword/tag"
 					,{id:d||0}
 					,function(data){
 						console.info(data);
@@ -497,7 +498,7 @@ color: #EEEEEE;
 					}
 					,"json");
 			
-			$.post(baseurl+"techword/related"
+			$.post(baseurl+"../techword/related"
 					,{id:d||0}
 					,function(data){
 						console.info(data);
@@ -716,15 +717,17 @@ color: #EEEEEE;
 			$(".techword-save").click(function(){
 				var name = $(".techword-name-input").val();
 				var subname = $(".techword-subname-input").val();
+				var describe = $(".techword-describe-input").val();
 				if(name){
 					
 				}else{
 					return;
 				}
-				$.post("/daily/techword/save"
+				$.post(baseurl+"../techword/save"
 						,{
 							name:name,
-						    subname:subname
+						    subname:subname,
+						    describe:describe
 						}
 						,function(data){
 							console.info(data);
