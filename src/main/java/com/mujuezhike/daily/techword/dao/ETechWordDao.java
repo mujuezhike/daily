@@ -5,5 +5,7 @@ import com.mujuezhike.daily.techword.entity.ETechWord;
 public interface ETechWordDao {
     
 	ETechWord selectByPrimaryKey(Long id);
+	
+	int addBean(ETechWord bean);
 
 }

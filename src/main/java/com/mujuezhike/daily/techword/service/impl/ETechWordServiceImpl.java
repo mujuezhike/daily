@@ -21,4 +21,12 @@ public class ETechWordServiceImpl implements ETechWordService{
 	
 	}
 
+
+	@Override
+	public int addBean(ETechWord bean) {
+		
+		return eTechWordDao.addBean(bean);
+		
+	}
+
 }

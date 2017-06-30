@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <title>TechWord</title>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.history.js"></script>
 <style type="text/css">
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li,
 	pre, figure, form, fieldset, legend, button, input, textarea, select th,
@@ -41,7 +42,8 @@ body {
 	vertical-align: sub;
 	position: relative;
 	float: left;
-	height: 42px;
+	height: 44px;
+	border: 1px solid #FFFFFF;
 }
 
 .techword-subname {
@@ -53,6 +55,8 @@ body {
 	position: relative;
 	float: left;
 	color: #a2a2a2;
+	border: 1px solid #FFFFFF;
+    top: -1px;
 }
 
 .techword-describe {
@@ -65,6 +69,7 @@ body {
 	zoom: 1;
 	margin-left: 32px;
 	margin-right: 32px;
+	border: 1px solid #FFFFFF;
 }
 
 .tege-left {
@@ -176,8 +181,48 @@ color: #EEEEEE;
     font-family: body;
     color: #333;
     outline:none;
-    height: 42px;
-    width: 234px; /** js 会控制变动**/
+    height: 44px;
+    width: 238px; /** js 会控制变动**/
+    top: -3px;
+}
+.techword-subname-input{
+	font-size: 18px;
+    line-height: 18px;
+    font-weight: 400;
+    vertical-align: sub;
+    position: relative;
+    float: left;
+    border: 1px solid #FFFFFF;
+    font-family: body;
+    color: #a2a2a2;
+    outline:none;
+    height: 19px;
+    width: 125px; /** js 会控制变动**/
+}
+.techword-describe-input{
+	margin: 0px;
+    width: 1062px;
+    /* height: 382px; */
+    font-size: 14px;
+    word-wrap: break-word;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 24px;
+    zoom: 1;
+    border: 1px solid #FFFFFF;
+    font-family: Microsoft YaHei;
+    position: relative;
+    outline:none;
+    resize:none;
+    
+}
+.techword-save{
+	position: relative;
+    float: right;
+	height: 50px;
+	width: 50px;
+	margin-top: 25px;
+    margin-right: 30px;
 }
 </style>
 </head>
@@ -192,6 +237,9 @@ color: #EEEEEE;
 		<div class="title">
 			<div class="techword-name"></div>
 			<div class="techword-subname"></div>
+			<div class="techword-save">
+				<canvas id="tege-save-anvas"></canvas>
+			</div>
 		</div>
 		<div class="techword-describe"></div>
 		<div class="tag-title">TAG</div>
@@ -213,6 +261,18 @@ color: #EEEEEE;
 				var r = window.location.search.substr(1).match(reg); 
 				if (r != null) return unescape(r[2]); return null; 
 			} 
+			
+			/*
+			 * 替换当前url 并不导致浏览器页面刷新
+			 * name 参数名
+			 * value 参数值
+			 */
+			function replaceUrl(name, value) {        
+			    var obj = new Object();
+			    obj[name] = value;
+			    obj.rand = Math.random();
+			    History.replaceState(obj, '', '?' + name + '=' + value);
+			}
 			
 			function checkUrl(str) {
 			    var RegUrl = new RegExp();
@@ -494,28 +554,184 @@ color: #EEEEEE;
 			
 			
 			/** Edit **/
+			function divwidth(str,styleclass){
+				var div = $("<div class=\""+ styleclass +"\"></div>");
+				$(div).html(str);
+				$(div).css("visibility","hidden");
+				$("body").append(div);
+				var m = $(div).width();
+				
+				$(div).remove();
+				return m;
+			}
 			function initaddname(){
 				var tname = $(".techword-name").html();
 				if(!tname){
 					var input = $("<input class=\"techword-name-input\" placeholder=\"请输入一个词语\" />");
 					$(".techword-name").append(input);
+					$(".techword-name").css("border-width","0px");
+					var owid = $(input).width();
 					$(input).blur(function(){
-						  //$("input").css("background-color","#D6D6FF");
-						  initaddsubname();
+						  var str = $(this).val();
+						  var wid = parseInt(divwidth(str,"techword-name"));
+						  if(wid<10){
+							  wid = owid;
+						  }
+						  $(this).css("width",wid+"px");
+					});
+					$(input).focus(function(){
+						  var str = $(this).val();
+						  var wid = parseInt(divwidth(str,"techword-name"));
+						  if(wid<10){
+							  wid = owid;
+						  }
+						  $(this).css("width",wid+"px");
+					});
+					$(input).keyup(function(){
+						  var str = $(this).val();
+						  var wid = parseInt(divwidth(str,"techword-name")+2);
+						  if(wid<10){
+							  wid = owid;
+						  }
+						  $(this).css("width",wid+"px");
+					});
+					$(input).keydown(function(){
+						  var str = $(this).val();
+						  var wid = parseInt(divwidth(str,"techword-name")+35);
+						  if(wid<10){
+							  wid = owid;
+						  }
+						  $(this).css("width",wid+"px");
 					});
 				}
 			}
 			function initaddsubname(){
 				var tsubname = $(".techword-subname").html();
 				if(!tsubname){
-					var input = $("<input class=\"techword-subname-input\" placeholder=\"请输入一个词语\" />");
+					var input = $("<input class=\"techword-subname-input\" placeholder=\"请输入一个副词\" />");
 					$(".techword-subname").append(input);
+					$(".techword-subname").css("border-width","0px");
 					$(input).blur(function(){
 						  //$("input").css("background-color","#D6D6FF");
 					});
 				}
 			}
+			function initadddescribe(){
+				var tdescribe = $(".techword-describe").html();
+				if(!tdescribe){
+					var input = $("<textarea class=\"techword-describe-input\" placeholder=\"请输入描述\" />");
+					$(".techword-describe").append(input);
+					$(".techword-describe").css("border-width","0px");
+					$(input).blur(function(){
+						  //$("input").css("background-color","#D6D6FF");
+					});
+				}
+			}
+			function initTegeSaveAnvas(){
+				var canvas=document.getElementById('tege-save-anvas');
+				canvas.width = 50;
+				canvas.height = 50;
+				var ctx=canvas.getContext('2d');
+				
+				ctx.arc(25,25,20,0,Math.PI*2);
+				ctx['fillStyle'] = '#EEEEEE';
+				ctx['strokeStyle'] = '#DDDDDD';
+				ctx.lineWidth = 1;
+				ctx.fill();
+				ctx.stroke();
+				//ctx.arc(25,25,25,0,Math.PI*2);
+				//ctx['fillStyle'] = '#DEDDDD';
+				//ctx['strokeStyle'] = '#BBBBBB';
+
+				ctx.beginPath();
+				ctx.moveTo(12, 25);
+				ctx.lineTo(20, 35);
+				ctx.lineTo(38, 16);
+				ctx['strokeStyle'] = '#DDDDDD';
+				ctx.lineWidth = 2;
+				ctx.stroke();
+				
+				canvas.onmouseover = function(e){  
+					 ctx.clearRect(0,0,canvas.width,canvas.height);
+					 var draw = function() {
+						    ctx.beginPath();
+						 	ctx.arc(25,25,20,0,Math.PI*2);
+							ctx['fillStyle'] = '#FFFFFF';
+							ctx['strokeStyle'] = '#999999';
+							ctx.lineWidth = 1;
+							ctx.fill();
+							ctx.stroke();
+							//ctx.arc(25,25,25,0,Math.PI*2);
+							//ctx['fillStyle'] = '#DEDDDD';
+							//ctx['strokeStyle'] = '#BBBBBB';
+
+							ctx.beginPath();
+							ctx.moveTo(12, 25);
+							ctx.lineTo(20, 35);
+							ctx.lineTo(38, 16);
+							ctx['strokeStyle'] = '#999999';
+							ctx.lineWidth = 2;
+							ctx.stroke();
+					}
+					draw();
+					$(canvas).css("cursor","pointer");
+				
+			    }
+				
+				canvas.onmouseout = function(e){  
+					 ctx.clearRect(0,0,canvas.width,canvas.height);
+					 var draw = function() {
+						    ctx.beginPath();
+						 	ctx.arc(25,25,20,0,Math.PI*2);
+							ctx['fillStyle'] = '#EEEEEE';
+							ctx['strokeStyle'] = '#DDDDDD';
+							ctx.lineWidth = 1;
+							ctx.fill();
+							ctx.stroke();
+							//ctx.arc(25,25,25,0,Math.PI*2);
+							//ctx['fillStyle'] = '#DEDDDD';
+							//ctx['strokeStyle'] = '#BBBBBB';
+
+							ctx.beginPath();
+							ctx.moveTo(12, 25);
+							ctx.lineTo(20, 35);
+							ctx.lineTo(38, 16);
+							ctx['strokeStyle'] = '#DDDDDD';
+							ctx.lineWidth = 2;
+							ctx.stroke();
+					}
+					draw();
+					$(canvas).css("cursor","default");
+			    }
+			}
 			initaddname();
+			initaddsubname();
+			initadddescribe();
+			initTegeSaveAnvas();
+			$(".techword-name-input").focus();
+			
+			$(".techword-save").click(function(){
+				var name = $(".techword-name-input").val();
+				var subname = $(".techword-subname-input").val();
+				if(name){
+					
+				}else{
+					return;
+				}
+				$.post("/daily/techword/save"
+						,{
+							name:name,
+						    subname:subname
+						}
+						,function(data){
+							console.info(data);
+							if(data && data.content){
+								replaceUrl("id",data.content.id);
+							}
+						}
+						,"json");
+			});
+			
 			
 	</script>
 </body>

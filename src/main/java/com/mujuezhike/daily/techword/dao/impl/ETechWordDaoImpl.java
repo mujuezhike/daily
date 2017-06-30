@@ -21,4 +21,11 @@ public class ETechWordDaoImpl implements ETechWordDao{
 		
 	}
 
+	@Override
+	public int addBean(ETechWord bean) {
+		
+		return eTechWordMapper.addBean(bean);
+		
+	}
+
 }

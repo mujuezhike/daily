@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mujuezhike.daily.techword.entity.ETechWord;
 import com.mujuezhike.daily.techword.entity.ReTechTag;
 import com.mujuezhike.daily.techword.entity.vo.ReTechTagWithWord;
+import com.mujuezhike.daily.techword.enums.OPTypeEnum;
 import com.mujuezhike.daily.techword.service.ETechWordService;
 import com.mujuezhike.daily.techword.service.ReTechTagService;
 import com.mujuezhike.daily.test.entity.ResultModel;
@@ -33,6 +34,45 @@ public class ETechWordController {
 		ETechWord detail = eTechWordService.selectByPrimaryKey(record.getId());
 		
 		return new ResponseEntity<>(ResultModel.ok(detail), HttpStatus.OK);
+		
+    }
+	
+	@RequestMapping("save")
+	public ResponseEntity<ResultModel> save(ETechWord record){
+		
+		OPTypeEnum opt = OPTypeEnum.ADD;
+		
+		Long id = record.getId();
+		if(id != null && id > 0 ){
+			
+			ETechWord detail = eTechWordService.selectByPrimaryKey(record.getId());
+			if(detail!= null && detail.getId()!=null && detail.getId() > 0 ){
+			
+				opt = OPTypeEnum.EDIT;
+				
+			}else{
+				
+				opt = OPTypeEnum.ADD;
+				
+			}
+			
+		}else{
+			
+			opt = OPTypeEnum.ADD;
+			
+		}
+		
+		if(opt == OPTypeEnum.ADD){
+			
+			eTechWordService.addBean(record);
+			
+		}else{
+			
+			record = new ETechWord();
+			
+		}
+		
+		return new ResponseEntity<>(ResultModel.ok(record), HttpStatus.OK);
 		
     }
 	

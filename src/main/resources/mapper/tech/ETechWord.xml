@@ -36,4 +36,33 @@
     where a.id = #{id,jdbcType=VARCHAR}
   </select>
   
+  <insert id="addBean" parameterType="com.mujuezhike.daily.techword.entity.ETechWord" useGeneratedKeys="true" keyProperty="id">
+    insert into e_tech_word (
+      id, 
+      `name`,
+      subname,
+      `describe`<!--,
+       weight,
+      `status`,
+      create_time,
+      update_time,
+      count_in_resume,
+      count_in_baidu,
+      is_main -->
+      )
+    values (
+      #{id,jdbcType=BIGINT},
+      #{name,jdbcType=VARCHAR},
+      #{subname,jdbcType=VARCHAR},
+      #{describe,jdbcType=VARCHAR}<!--,
+      #{weight,jdbcType=DOUBLE},
+      #{status,jdbcType=TINYINT},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{countInResume,jdbcType=BIGINT},
+      #{countInBaidu,jdbcType=BIGINT},
+      #{isMain,jdbcType=TINYINT} -->
+      )
+  </insert>
+  
 </mapper>
