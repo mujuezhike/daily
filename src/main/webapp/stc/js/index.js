@@ -24,7 +24,7 @@
     				&& e.clientY >= 250 && e.clientY <= 320){
     			
     			$("#stage").css("cursor","pointer");
-    			$(".content").attr("title","Tech word");
+    			$(".content").attr("title","Tech Word");
     			
     		}else{
     			
