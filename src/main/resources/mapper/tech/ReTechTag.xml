@@ -55,6 +55,7 @@
       <if test="relatedWord != null" >
         and a.related_word = #{relatedWord,jdbcType=BIGINT} 
       </if>
+      limit 50
   </select>
   
 </mapper>
