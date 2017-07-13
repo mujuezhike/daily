@@ -352,7 +352,7 @@ public class ResumeSearchTest {
 		
 		for(int i=0;i<searchbean.length;i++){
 			mainnum = 0;
-			traverseFolder("C:/简历file",searchbean[i]);
+			traverseFolder("C:\\jl",searchbean[i]);
 			System.out.println(searchbean[i]+": "+mainnum);
 			typeMap.put(searchbean[i],mainnum);
         	
@@ -461,7 +461,7 @@ public class ResumeSearchTest {
      * @return
      * @throws IOException
      */
-    private static String getCharset(File file) throws IOException{  
+    public static String getCharset(File file) throws IOException{  
         
         BufferedInputStream bin = new BufferedInputStream(new FileInputStream(file));    
         int p = (bin.read() << 8) + bin.read();    

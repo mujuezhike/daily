@@ -23,7 +23,6 @@ public class DailyTest {
 	public static ValueComparator bvc =  new ValueComparator(typeMap);  
 	public static Map<String,Long> sorted_map = new TreeMap<String,Long>(bvc); 
 	
-	
 	public static void main(String[] args){
 		
 		traverseFolder2("E:\\日记\\rj20170410","哀绿");
