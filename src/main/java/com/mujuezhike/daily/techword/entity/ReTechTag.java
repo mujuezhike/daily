@@ -28,7 +28,13 @@ public class ReTechTag implements Serializable{
 	
 	private Long tagWord;
 	
-	private Long relatedWord;
+	private Long relatedWord; 
+	
+	private String codetext;
+	
+	private Integer isProperty;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -110,4 +116,20 @@ public class ReTechTag implements Serializable{
 		this.relatedWord = relatedWord;
 	}
 
+	public Integer getIsProperty() {
+		return isProperty;
+	}
+
+	public void setIsProperty(Integer isProperty) {
+		this.isProperty = isProperty;
+	}
+
+	public String getCodetext() {
+		return codetext;
+	}
+
+	public void setCodetext(String codetext) {
+		this.codetext = codetext;
+	}
+	
 }

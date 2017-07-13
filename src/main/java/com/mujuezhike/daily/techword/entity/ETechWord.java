@@ -31,6 +31,8 @@ public class ETechWord implements Serializable{
 	private Long countInBaidu;
 	
 	private Integer isMain;
+	
+	private Integer isProperty;
 
 	public Long getId() {
 		return id;
@@ -118,6 +120,14 @@ public class ETechWord implements Serializable{
 
 	public void setIsMain(Integer isMain) {
 		this.isMain = isMain;
+	}
+	
+	public Integer getIsProperty() {
+		return isProperty;
+	}
+
+	public void setIsProperty(Integer isProperty) {
+		this.isProperty = isProperty;
 	}
 
 }

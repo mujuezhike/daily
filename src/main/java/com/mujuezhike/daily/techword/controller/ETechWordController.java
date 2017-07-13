@@ -79,50 +79,24 @@ public class ETechWordController {
 	@RequestMapping("tag")
 	public ResponseEntity<ResultModel> tag(ETechWord record){
 		
-		ReTechTag bean = new ReTechTag();
+		ReTechTag r = new ReTechTag();
 		
-		bean.setTargetWord(record.getId());
+		r.setTargetWord(record.getId());
 		
-		List<ReTechTag> list = reTechTagService.selectByBean(bean);
+		List<ReTechTagWithWord> rlist = reTechTagService.selectTagForBean(r);
 		
-		List<ReTechTagWithWord> rlist = new ArrayList<ReTechTagWithWord>();
+		return new ResponseEntity<>(ResultModel.ok(rlist), HttpStatus.OK);
 		
-		for(int i=0;i<list.size();i++){
-			
-			ReTechTag listbean = list.get(i);
-			
-			ReTechTagWithWord rbean = new ReTechTagWithWord();
-			
-			BeanUtils.copyProperties(listbean, rbean);
-			
-			if(listbean!=null){
-				
-				//tagWord
-				Long tagWord = listbean.getTagWord();
-				
-				if(tagWord!=null && tagWord > 0){
-					
-					ETechWord tagWordBean = eTechWordService.selectByPrimaryKey(tagWord);
-					
-					rbean.setTagWordBean(tagWordBean);
-					
-				}
-				
-				//relatedWord
-				Long relatedWord = listbean.getRelatedWord();
-				
-				if(relatedWord!=null && relatedWord > 0){
-					
-					ETechWord relatedWordBean = eTechWordService.selectByPrimaryKey(relatedWord);
-					
-					rbean.setRelatedWordBean(relatedWordBean);
-					
-				}
-				
-			}
-			
-			rlist.add(rbean);
-		}
+    }
+	
+	@RequestMapping("property")
+	public ResponseEntity<ResultModel> property(ETechWord record){
+		
+		ReTechTag r = new ReTechTag();
+		
+		r.setTargetWord(record.getId());
+		
+		List<ReTechTagWithWord> rlist = reTechTagService.selectPropertyForBean(r);
 		
 		return new ResponseEntity<>(ResultModel.ok(rlist), HttpStatus.OK);
 		

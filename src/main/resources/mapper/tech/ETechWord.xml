@@ -13,6 +13,7 @@
     <result column="count_in_resume" property="countInResume" jdbcType="BIGINT" />
     <result column="count_in_baidu" property="countInBaidu" jdbcType="BIGINT" />
     <result column="is_main" property="isMain" jdbcType="TINYINT" />
+    <result column="is_property" property="isProperty" jdbcType="TINYINT" />
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -26,7 +27,8 @@
 	a.update_time,
 	a.count_in_resume,
 	a.count_in_baidu,
-	a.is_main
+	a.is_main,
+	a.is_property
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

@@ -11,6 +11,8 @@
     <result column="target_word" property="targetWord" jdbcType="BIGINT" />
     <result column="tag_word" property="tagWord" jdbcType="BIGINT" />
     <result column="related_word" property="relatedWord" jdbcType="BIGINT" />
+    <result column="codetext" property="codetext" jdbcType="VARCHAR" />
+    <result column="is_property" property="isProperty" jdbcType="TINYINT" />
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -22,7 +24,9 @@
 	a.update_time,
 	a.target_word,
 	a.tag_word,
-	a.related_word
+	a.related_word,
+	a.codetext,
+	a.is_property
   </sql>
   
   <!-- selectBySearchBean -->
@@ -54,6 +58,9 @@
       </if>
       <if test="relatedWord != null" >
         and a.related_word = #{relatedWord,jdbcType=BIGINT} 
+      </if>
+      <if test="isProperty != null" >
+        and a.is_property = #{isProperty,jdbcType=TINYINT} 
       </if>
       limit 50
   </select>

@@ -160,6 +160,59 @@ body {
     width: auto;
     color: #cccccc;
 }
+
+.property-title {
+	display:none;
+	margin: 0px 30px 0px 45px;
+    width: auto;
+    color: #cccccc;
+}
+.property-area{
+	margin: 0px 30px 10px 30px;
+    width: auto;
+    min-height: 25px;
+    border: 1px solid #EEEEEE;
+    background-color: #FEFDFD;
+    padding-left: 18px;
+    /**padding-top: 10px;**/
+    padding-right: 10px;
+    /**padding-bottom: 10px;**/
+    clear: both;
+    background: url(http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/basicInfo/img/basicInfo-bg_7819f20.png);
+    display:none;
+}
+.property-area:after{
+    content: '\0020';
+    display: block;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+    
+}
+.property-bean{
+	position: relative;
+    /* border-bottom: 1px solid #ccc;*/
+    /* font-weight: 700; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    line-height: 25px;
+}
+.property-key{
+	position: relative;
+    float: left;
+    width: 150px;
+    color: #999;
+}
+.property-value{
+	position: relative;
+    float: left;
+    width: auto;
+    color: #666;
+}
 </style>
 </head>
 <body>
@@ -175,15 +228,17 @@ body {
 			<div class="techword-subname"></div>
 		</div>
 		<div class="techword-describe"></div>
+		<div class="property-title">PROPERTY</div>
+		<div class="property-area">
+			<!-- <div class="property-bean">
+				<div class="property-key">key</div>
+				<div class="property-value">value</div>
+			</div> -->
+		</div>
 		<div class="tag-title">TAG</div>
-		<div class="tag-area">
-			
-		</div>
-		
+		<div class="tag-area"></div>
 		<div class="related-title">RELATED</div>
-		<div class="related-area">
-			
-		</div>
+		<div class="related-area"></div>
 		<!-- <canvas height="600" width="1137" style="position: absolute; top: 0px; left: 0px; z-index: -1; opacity: 1;background-color: #FFF;width: 1137px;height:600px;"  id="canvas"></canvas> -->
 	</div>
 	
@@ -359,6 +414,39 @@ body {
 						}
 						,"json");
 			
+			/** 属性  @20170713 **/
+			$.post(baseurl+"../techword/property"
+					,{id:d||0}
+					,function(data){
+						console.info(data);
+						if(data.content){
+							$(".property-area").html(""); 
+							var content = data.content;
+								if(content.length>0){
+								
+								for(var i=0;i<content.length;i++){
+									var propertybean = $("<div class=\"property-bean\"></div>");
+									var propertykey = $("<div class=\"property-key\"></div>");
+										$(propertykey).html(content[i].tagWordBean.name);
+										$(propertybean).append(propertykey);
+									var propertyvalue = $("<div class=\"property-value\"></div>");
+										$(propertyvalue).html(content[i].codetext);
+										$(propertybean).append(propertyvalue);
+									
+									$(".property-area").append(propertybean);
+									
+								}
+								
+								$(".property-title").show();
+								$(".property-area").css("display","block");
+								
+								
+							} 
+						}
+					}
+					,"json");
+			
+			
 			$.post(baseurl+"../techword/tag"
 					,{id:d||0}
 					,function(data){
@@ -475,6 +563,6 @@ body {
 					}
 					,"json");
 	</script>
-    <script type="text/javascript" src="js/techword/bganimate.js"></script>
+    <!-- <script type="text/javascript" src="js/techword/bganimate.js"></script> -->
     </body>
 </html>
