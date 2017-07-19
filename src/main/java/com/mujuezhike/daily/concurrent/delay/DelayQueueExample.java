@@ -2,13 +2,12 @@ package com.mujuezhike.daily.concurrent.delay;
 
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
 
 public class DelayQueueExample {
 
 	public static void main(String[] args) {
 		
-		DelayQueue queue = new DelayQueue();  
+		DelayQueue<Delayed> queue = new DelayQueue<Delayed>();  
 		  
         Delayed element1 = new DelayedElement();  
         

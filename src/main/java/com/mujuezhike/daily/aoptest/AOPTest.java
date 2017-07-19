@@ -1,8 +1,5 @@
 package com.mujuezhike.daily.aoptest;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 public class AOPTest {
 	
 	public static void main(String[] args){
@@ -33,7 +30,7 @@ public class AOPTest {
 //			e.printStackTrace();
 //		}
 		
-		Class thisclass = this.getClass();
+		Class<? extends AOPTest> thisclass = this.getClass();
 		
 		System.out.println("getName: 			" + thisclass.getName());
 		System.out.println("isInterface: 		" + thisclass.isInterface());

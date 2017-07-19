@@ -12,10 +12,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+@SuppressWarnings("deprecation")
 public class HttpDaili {
 	
 	public static void main(String[] args) throws ClientProtocolException, IOException{
 		
+		@SuppressWarnings({ "resource" })
 		HttpClient httpClient = new DefaultHttpClient();
         	
         HttpGet httpGet = new HttpGet("http://www.baidu.com/s?wd=" + "ABND".replace(" ", "%20"));

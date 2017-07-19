@@ -1,7 +1,6 @@
 package com.mujuezhike.daily.test.controller;
 
 import java.util.List;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mujuezhike.daily.NormalCharTest;
 import com.mujuezhike.daily.daily.entity.DailyBeanHistoryStatistics;
 import com.mujuezhike.daily.daily.service.DailyService;
 import com.mujuezhike.daily.test.entity.ResultModel;

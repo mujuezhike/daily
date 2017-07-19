@@ -1,7 +1,5 @@
 package com.mujuezhike.daily.concurrent.concurrentmap;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -10,10 +8,7 @@ public class ConcurrentMapTest {
 
 	public static void main(String[] args) {
 		
-		final ConcurrentMap concurrentMap = new ConcurrentHashMap(); //50099625733 
-		//final Map concurrentMap = new HashMap();                       //9466356407  
-		final long n1 = System.nanoTime();
-		
+		final ConcurrentMap<Integer, Integer> concurrentMap = new ConcurrentHashMap<Integer, Integer>(); //50099625733 
 		Thread s3 = new Thread(new Runnable(){
 
 			@Override
