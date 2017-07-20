@@ -29,11 +29,11 @@ public class SocketServer {
 		while (true) {
 			Thread.sleep(10000);
 			String line = null;
-			bufferedWriter.println(new Date() + ",Hello,I'm Server!");// 向客户端输出数据
+			// 向客户端输出数据
 			line = bufferedReader.readLine();// 读取客户端传来的数据
 			if (line == null)
 				break;
-			System.out.println("客户端说：" + line);// 打印客户端传来的数据
+			System.out.println(line);// 打印客户端传来的数据
 
 		}
 	}
