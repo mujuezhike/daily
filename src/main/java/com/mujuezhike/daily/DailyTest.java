@@ -3,7 +3,6 @@ package com.mujuezhike.daily;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class DailyTest {
 	
 	public static void main(String[] args){
 		
-		traverseFolder2("E:\\日记\\rj20170410","哀绿");
+		traverseFolder2("E:\\日记\\rj20170721","WORK");
 		int ee = 3;
 		
 		//showMap(typeMap);
@@ -181,6 +180,7 @@ public class DailyTest {
                 return 1;  
             } // returning 0 would merge keys  
         }  
+        
     }  
 
 }
