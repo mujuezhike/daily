@@ -1,5 +1,9 @@
 package com.mujuezhike.daily.aoptest;
 
+/**
+ * 守护线程测试
+ * @author mujuezhike
+ */
 public class DeamonTest {
 	
 	 public static void main(String[] args) throws InterruptedException  
