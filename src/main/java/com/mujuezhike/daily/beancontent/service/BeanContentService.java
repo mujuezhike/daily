@@ -17,4 +17,5 @@ public interface BeanContentService {
 	public BeanContent deleteBeanContent(BeanContent bc);
 	
 	public List<BeanContent> listBeanContent(BeanContent bc);
+	
 }
