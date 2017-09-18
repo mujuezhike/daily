@@ -27,13 +27,14 @@ public class DailyCalendarTest {
 	
 	public static void main(String[] args){
 		
-		traverseFolder2("E:\\日记\\rj20170410","2015-06-02");
+		traverseFolder2("E:\\日记\\rj20170721","2015-02-26");
 		
 		//showMap(typeMap);
 		
 		//sorted_map.putAll(typeMap); 
 
 		//showTreeMap(sorted_map);
+		
 	}
 	
 	/**

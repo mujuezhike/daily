@@ -27,7 +27,7 @@ public class DailyTagConpatityTest {
 	
 	public static void main(String[] args){
 		
-		traverseFolder2("E:\\日记\\rj20170410","2016-04-28");
+		traverseFolder2("E:\\日记\\rj20170804","java");
 		
 		//showMap(typeCMap);
 		
@@ -163,7 +163,7 @@ public class DailyTagConpatityTest {
                 	}else{
                 		typeCMap.put(file.getName(),count+tempString.length());
                 	}
-            		//System.out.println(tempString);
+            		System.out.println(tempString);
             		
             	}
                 line++;

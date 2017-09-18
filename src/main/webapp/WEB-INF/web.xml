@@ -17,9 +17,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     </context-param>
 
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    
+    	<listener-class>
+        	org.springframework.web.context.ContextLoaderListener
+    	</listener-class>
+	</listener>
     
     <!--
 		- Servlet that dispatches request to registered handlers (Controller implementations).

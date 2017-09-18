@@ -34,14 +34,14 @@ public class HtmlParserTest{
 	public static void main (String[] args) throws Exception {  
 		
 		List<File> filelist = new ArrayList<File>();
-		getFileList("C:\\jl",filelist);
+		getFileList("C:\\jl\\51job_前端_导出简历_20170801",filelist);
 		 
 		for(int i=0;i<filelist.size();i++){
 			deceFile(filelist.get(i).getAbsolutePath());
 		}
 		sorted_map.putAll(wordmap); 
 		showTreeMap(sorted_map); 
-		writeTreeMap(sorted_map,"C:\\jl\\pi.txt");
+		writeTreeMap(sorted_map,"C:\\jl\\51job_前端_导出简历_20170801\\pi.txt");
     } 
 	
 	public static List<File> getFileList(String strPath,List<File> filelist) {
