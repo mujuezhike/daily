@@ -25,7 +25,7 @@ public class DailyTest {
 	
 	public static void main(String[] args){
 		
-		traverseFolder2("E:\\日记\\rj20170410","哀绿");
+		traverseFolder2("G:\\日记\\日记整理后","WORK");
 		int ee = 3;
 		
 		//showMap(typeMap);
