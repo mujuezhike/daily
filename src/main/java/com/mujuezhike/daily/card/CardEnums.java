@@ -44,4 +44,20 @@ public enum CardEnums{
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	public static CardEnums findByCode(int n){
+		CardEnums[] crosses = values();
+		for(int i=0;i<crosses.length;i++){	
+			
+			if(crosses[i].getCode() == n ){
+				
+				return crosses[i];
+				
+			}
+			
+		}
+		
+		return null;
+		
+	}
 }
