@@ -15,6 +15,7 @@ public class ArrayBlockingQueueTest {
 		String string = queue.take();  
 		
 		System.out.println(queue.element());
+		System.out.println(string);
 		
 	}
 
